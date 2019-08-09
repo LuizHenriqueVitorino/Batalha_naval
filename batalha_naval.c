@@ -2,15 +2,18 @@
 #include <stdlib.h>
 #include <time.h>
 
-int coluna_navio=5, linha_navio=5, i, j;
+int i, j;
 char tabuleiro_jogador[10][10], tabuleiro_bot[10][10];
+int navios_jogador[10][10], navios_bot[10][10];
 
-int tabuleiro(int linha, char coluna);
+int tabuleiro(int linha, char coluna, int linha_bot, int coluna_bot);
 char verifica_casa(int i, int j);
 int numero_coluna(char coluna);
+int posiciona_navio();
 
 int main(){
-	int linha;
+	srand(time(NULL));
+	int linha, linha_bot, coluna_bot;
 	char coluna;
 	for(i=0; i<10; i++){
 		for(j=0; j<10; j++){
@@ -18,7 +21,8 @@ int main(){
 			tabuleiro_bot[i][j]='-';
 		}
 	}
-	tabuleiro(10, 'K');
+	tabuleiro(10, 'K', 10, 10);
+	posiciona_navio();
 	while(1){
 		do{
 			printf("Coluna: ");
@@ -34,21 +38,29 @@ int main(){
 				printf("Valor inválido, digite apenas os valores no intervalo de 0 a 9\n");
 			}
 		}while(linha<0 || linha>9);
-		tabuleiro(linha, coluna);
+		coluna_bot=rand()%10;
+		linha_bot=rand()%10;
+		tabuleiro(linha, coluna, linha_bot, coluna_bot);
+
 	}
 }
 int posiciona_navio(){
-	srand(time(NULL));
-	int navio_1[2]={rand()%9, rand()%9};
-	int navio_2[2]={rand()%9, rand()%9};
-	int navio_3[2]={rand()%9, rand()%9};
-	int navio_4[2][2]={{rand()%9, rand()%8}};
-	navio_4[1]={{navio_4[0][0], navio_4[1][0]+1}};
-	int navio_5[2][2]={{rand()%9, rand()%8}};
-	navio_5[1]={{navio_5[0][0], navio_5[1][0]+1}};
-	int navio_6[2][2]={{rand()%9, rand()%8}};
-	navio_6[1]={{navio_6[0][0], navio_6[1][0]+1}};
-
+	int linha_navio, coluna_navio;
+	for(i=0;i<10;i++){
+		for(j=0;j<10;j++){
+			navios_jogador[i][j]=0;
+			navios_bot[i][j]=0;
+		}
+	}
+	for(i=0;i<3;i++){
+		printf("Linha do navio %d: ", i);
+		scanf("%d", &linha_navio);
+		printf("Coluna do navio %d: ", i);
+		scanf("%d", &coluna_navio);
+		navios_jogador[linha_navio][coluna_navio]=1;
+		navios_bot[rand()%9][rand()%9]=1;
+	}
+	
 }
 int numero_coluna(char coluna){
 	switch(coluna){
@@ -76,8 +88,9 @@ int numero_coluna(char coluna){
 			break;
 	}
 }
-int tabuleiro(int linha, char coluna){
+int tabuleiro(int linha, char coluna, int linha_bot, int coluna_bot){
 	tabuleiro_bot[linha][numero_coluna(coluna)]=verifica_casa(linha, numero_coluna(coluna));
+	tabuleiro_jogador[linha_bot][coluna_bot]=verifica_casa(linha_bot, coluna_bot);
 	printf("   A  B  C  D  E  F  G  H  I  J\n");
 	for(i=0; i<10; i++){
 		if(i<9){
@@ -110,7 +123,7 @@ int tabuleiro(int linha, char coluna){
 	}
 }
 char verifica_casa(int i, int j){
-	if(i==linha_navio && j==coluna_navio){
+	if(navios_bot[i][j]==1){
 		return 'x';
 	}
 	else{
