@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int coluna_navio=5, linha_navio=5, i, j;
-char tabuleiro_jogador[10][10];
+char tabuleiro_jogador[10][10], tabuleiro_bot[10][10];
 
 int tabuleiro(int linha, char coluna);
 char verifica_casa(int i, int j);
@@ -14,18 +15,40 @@ int main(){
 	for(i=0; i<10; i++){
 		for(j=0; j<10; j++){
 			tabuleiro_jogador[i][j]='-';
+			tabuleiro_bot[i][j]='-';
 		}
 	}
 	tabuleiro(10, 'K');
 	while(1){
-		printf("Linha: ");
-		scanf("%d", &linha);
-		printf("Coluna: ");
-		scanf("%s", &coluna);
+		do{
+			printf("Coluna: ");
+			scanf("%s", &coluna);
+			if(numero_coluna(coluna)==10){
+				printf("Valor inválido, digite apenas os valores no intervalo de A a J\n");
+			}
+		}while(numero_coluna(coluna)==10);
+		do{
+			printf("Linha: ");
+			scanf("%d", &linha);
+			if(linha<0 || linha>9){
+				printf("Valor inválido, digite apenas os valores no intervalo de 0 a 9\n");
+			}
+		}while(linha<0 || linha>9);
 		tabuleiro(linha, coluna);
 	}
 }
 int posiciona_navio(){
+	srand(time(NULL));
+	int navio_1[2]={rand()%9, rand()%9};
+	int navio_2[2]={rand()%9, rand()%9};
+	int navio_3[2]={rand()%9, rand()%9};
+	int navio_4[2][2]={{rand()%9, rand()%8}};
+	navio_4[1]={{navio_4[0][0], navio_4[1][0]+1}};
+	int navio_5[2][2]={{rand()%9, rand()%8}};
+	navio_5[1]={{navio_5[0][0], navio_5[1][0]+1}};
+	int navio_6[2][2]={{rand()%9, rand()%8}};
+	navio_6[1]={{navio_6[0][0], navio_6[1][0]+1}};
+
 }
 int numero_coluna(char coluna){
 	switch(coluna){
@@ -49,10 +72,12 @@ int numero_coluna(char coluna){
 			break;
 		case 'J': return 9;
 			break;
+		default: return 10;
+			break;
 	}
 }
 int tabuleiro(int linha, char coluna){
-	tabuleiro_jogador[linha][numero_coluna(coluna)]=verifica_casa(linha, numero_coluna(coluna));
+	tabuleiro_bot[linha][numero_coluna(coluna)]=verifica_casa(linha, numero_coluna(coluna));
 	printf("   A  B  C  D  E  F  G  H  I  J\n");
 	for(i=0; i<10; i++){
 		if(i<9){
@@ -77,7 +102,7 @@ int tabuleiro(int linha, char coluna){
 			printf("%d", i+1);
 		}
 		for(j=0; j<10; j++){
-			printf(" %c ", tabuleiro_jogador[i][j]);
+			printf(" %c ", tabuleiro_bot[i][j]);
 			if(j==9){
 				printf("\n");
 			}
