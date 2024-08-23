@@ -12,12 +12,6 @@ int main(){
 	gerar_tabuleiro(&navios_jogador);
 	gerar_tabuleiro(&navios_bot);
 
-	for(i=0; i<10; i++){
-		for(j=0; j<10; j++){
-			tabuleiro_jogador[i][j]='-';
-			tabuleiro_bot[i][j]='-';
-		}
-	}
 	tabuleiro(10, 'K', 10, 10);
 	posiciona_navio();
 	tabuleiro(10, 'K', 10, 10);

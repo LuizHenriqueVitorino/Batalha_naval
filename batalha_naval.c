@@ -16,6 +16,18 @@ void gerar_tabuleiro(tabuleiro *t){
 	}
 }
 
+void imprimir_tabuleiro(tabuleiro t){
+	puts("-\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ");
+	for(int i = 0; i < t.len_x; i++){
+		printf("%d\t", i + 1);
+		for(int j = 0; j < t.len_y; j++){
+			printf("%c\t", t.data[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
+
 int posiciona_navio(){
 	int linha_navio, linha_navio_bot, coluna_navio_bot;
 	char coluna_navio;
@@ -127,43 +139,6 @@ int numero_coluna(char coluna){
 			break;
 	}
 }
-
-/*
-int tabuleiro(int linha, char coluna, int linha_bot, int coluna_bot){
-	tabuleiro_bot[linha][numero_coluna(coluna)]=verifica_casa(linha, numero_coluna(coluna), 1);
-	tabuleiro_jogador[linha_bot][coluna_bot]=verifica_casa(linha_bot, coluna_bot, 2);
-	printf("   A  B  C  D  E  F  G  H  I  J\n");
-	for(i=0; i<10; i++){
-		if(i<9){
-			printf("%d ", i+1);
-		}
-		else{
-			printf("%d", i+1);
-		}
-		for(j=0; j<10; j++){
-			printf(" %c ", tabuleiro_jogador[i][j]);
-			if(j==9){
-				printf("\n");
-			}
-		}
-	}
-	printf("   A  B  C  D  E  F  G  H  I  J\n");
-	for(i=0; i<10; i++){
-		if(i<9){
-			printf("%d ", i+1);
-		}
-		else{
-			printf("%d", i+1);
-		}
-		for(j=0; j<10; j++){
-			printf(" %c ", tabuleiro_bot[i][j]);
-			if(j==9){
-				printf("\n");
-			}
-		}
-	}
-}
-*/
 
 char verifica_casa(int i, int j, int player){
 	if(player==1){
