@@ -1,3 +1,4 @@
+
 int posiciona_navio(){
 	int linha_navio, linha_navio_bot, coluna_navio_bot;
 	char coluna_navio;
@@ -109,6 +110,7 @@ int numero_coluna(char coluna){
 			break;
 	}
 }
+
 int tabuleiro(int linha, char coluna, int linha_bot, int coluna_bot){
 	tabuleiro_bot[linha][numero_coluna(coluna)]=verifica_casa(linha, numero_coluna(coluna), 1);
 	tabuleiro_jogador[linha_bot][coluna_bot]=verifica_casa(linha_bot, coluna_bot, 2);
@@ -143,6 +145,7 @@ int tabuleiro(int linha, char coluna, int linha_bot, int coluna_bot){
 		}
 	}
 }
+
 char verifica_casa(int i, int j, int player){
 	if(player==1){
 		if(navios_bot[i][j]==1){
@@ -161,6 +164,7 @@ char verifica_casa(int i, int j, int player){
 		}
 	}
 }
+
 int verifica_vitoria(){
 	int soma_pontos=0;
 	for(i=0;i<10;i++){
