@@ -1,5 +1,5 @@
 CC = gcc
-OBJS = main.o batalha_navel.o
+OBJS = main.o batalha_naval.o
 TARGET = app.out
 
 all: $(TARGET)
