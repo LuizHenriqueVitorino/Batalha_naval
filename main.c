@@ -3,14 +3,15 @@
 #include <time.h>
 #include "lib/batalha_naval.h"
 
-int i, j;
-char tabuleiro_jogador[10][10], tabuleiro_bot[10][10];
-int navios_jogador[10][10], navios_bot[10][10];
-
 int main(){
 	srand(time(NULL));
-	int linha, linha_bot, coluna_bot;
-	char coluna;
+
+	tabuleiro ataques_jogador, ataques_bot, navios_jogador, navios_bot;
+	gerar_tabuleiro(&ataques_jogador);
+	gerar_tabuleiro(&ataques_bot);
+	gerar_tabuleiro(&navios_jogador);
+	gerar_tabuleiro(&navios_bot);
+
 	for(i=0; i<10; i++){
 		for(j=0; j<10; j++){
 			tabuleiro_jogador[i][j]='-';

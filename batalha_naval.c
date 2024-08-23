@@ -1,3 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "lib/batalha_naval.h"
+
+void gerar_tabuleiro(tabuleiro *t){
+	t->data = malloc(t->len_x*sizeof(char*));
+	if(!(t->data)){
+		perror("FALTA DE MEMÓRIA.");
+		exit(1);
+	}
+	for(int i = 0; i < t->len_x; i++){
+		if(!(t->data[i] = calloc(t->len_y, sizeof(char)))){
+			perror("FALTA DE MEMÓRIA.");
+			exit(1);
+		}
+	}
+}
 
 int posiciona_navio(){
 	int linha_navio, linha_navio_bot, coluna_navio_bot;
@@ -111,6 +128,7 @@ int numero_coluna(char coluna){
 	}
 }
 
+/*
 int tabuleiro(int linha, char coluna, int linha_bot, int coluna_bot){
 	tabuleiro_bot[linha][numero_coluna(coluna)]=verifica_casa(linha, numero_coluna(coluna), 1);
 	tabuleiro_jogador[linha_bot][coluna_bot]=verifica_casa(linha_bot, coluna_bot, 2);
@@ -145,6 +163,7 @@ int tabuleiro(int linha, char coluna, int linha_bot, int coluna_bot){
 		}
 	}
 }
+*/
 
 char verifica_casa(int i, int j, int player){
 	if(player==1){
