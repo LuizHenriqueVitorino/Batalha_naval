@@ -3,6 +3,8 @@
 #include "lib/batalha_naval.h"
 
 void gerar_tabuleiro(tabuleiro *t){
+	t->len_x = 10;
+	t->len_y = 10;
 	t->data = malloc(t->len_x*sizeof(char*));
 	if(!(t->data)){
 		perror("FALTA DE MEMÓRIA.");
@@ -17,11 +19,16 @@ void gerar_tabuleiro(tabuleiro *t){
 }
 
 void imprimir_tabuleiro(tabuleiro t){
-	puts("-\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ");
+	puts("\tA B C D E F G H I J");
 	for(int i = 0; i < t.len_x; i++){
 		printf("%d\t", i + 1);
 		for(int j = 0; j < t.len_y; j++){
-			printf("%c\t", t.data[i][j]);
+			if(t.data[i][j] == 0){
+				printf("- ");
+			}
+			else{
+				printf("+ ");
+			}
 		}
 		printf("\n");
 	}
@@ -36,8 +43,10 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 		do{
 			printf("Digite a linha do navio %d de uma casa:\n", i + 1);
 			scanf("%hhd", &linha_navio_jogador);
+			while (getchar() != '\n');
 			printf("Digite a coluna do navio %d de uma casa:\n", i + 1);
 			scanf("%c", &coluna_navio_jogador);
+			while (getchar() != '\n');
 			if(t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] == 1){
 				puts("Esta casa já está ocupada por outro navio, tente outra casa!");
 			}
@@ -60,8 +69,10 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 			do{
 				printf("Digite a linha do navio %d de duas casas:\n", i + 1);
 				scanf("%hhd", &linha_navio_jogador);
+				while (getchar() != '\n');
 				printf("Digite a coluna do navio %d de duas casas:\n", i + 1);
 				scanf("%c", &coluna_navio_jogador);
+				while (getchar() != '\n');
 				if(numero_coluna(coluna_navio_jogador) == 8){
 					puts("Escolha um valor entre A e I");
 				}
@@ -87,8 +98,10 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 		do{
 			printf("Digite a linha do navio de três casas:\n");
 			scanf("%hhd", &linha_navio_jogador);
+			while (getchar() != '\n');
 			printf("Digite a linha do navio de duas casas:\n");
 			scanf("%c", &coluna_navio_jogador);
+			while (getchar() != '\n');
 			if(numero_coluna(coluna_navio_jogador) > 7){
 				puts("Escolha um valor entre A e H\n");
 			}
