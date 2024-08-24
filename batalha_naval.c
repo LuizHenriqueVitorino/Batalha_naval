@@ -158,23 +158,22 @@ char verifica_casa(int i, int j, int player){
 	}
 }
 
-int verifica_vitoria(){
-	int soma_pontos=0;
-	for(i=0;i<10;i++){
-		for(j=0;j<10;j++){
-			soma_pontos+=navios_bot[i][j];
+int verificar_vitoria(tabuleiro t_ataque_jogador, tabuleiro t_navios_jogador, tabuleiro t_ataque_bot, tabuleiro t_navios_bot){
+	int pontuacao_jogador = 0, pontuacao_bot = 0;
+	for(int i = 0; i < t_ataque_jogador.len_x; i++){
+		for(int j = 0; j < t_ataque_jogador.len_y; j++){
+			if(t_ataque_jogador.data[i][j] == 'a'){
+				pontuacao_jogador+=1;
+			}
+			if(t_ataque_jogador.data[i][j] == 'a'){
+				pontuacao_bot+=1;
+			}
 		}
 	}
-	if(soma_pontos==14){
+	if(pontuacao_jogador == 10){
 		return 1;
 	}
-	soma_pontos=0;
-	for(i=0;i<10;i++){
-		for(j=0;j<10;j++){
-			soma_pontos+=navios_jogador[i][j];
-		}
-	}
-	if(soma_pontos==14){
+	if(pontuacao_bot==10){
 		return 2;
 	}
 	else{

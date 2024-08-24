@@ -13,7 +13,7 @@ int main(){
 	gerar_tabuleiro(&navios_bot);
 
 	posicionar_navios(navios_jogador, navios_bot);
-	while(verifica_vitoria()==3){
+	while(verificar_vitoria(ataques_jogador, navios_jogador, ataques_bot, navios_bot) == 3){
 		do{
 			do{
 				printf("Coluna: ");
@@ -42,11 +42,12 @@ int main(){
 		tabuleiro(linha, coluna, linha_bot, coluna_bot);
 
 	}
-	if(verifica_vitoria()==1){
-		printf("Parabéns. Você ganhou!\n");
+
+	if(verifica_vitoria() == 1){
+		puts("Parabéns. Você ganhou!");
 	}
-	if(verifica_vitoria()==2){
-		printf("A máquina ganhou!\n");
-		printf("Game over!\n");
+	else{
+		puts("A máquina ganhou!");
+		puts("Game over!");
 	}
 }

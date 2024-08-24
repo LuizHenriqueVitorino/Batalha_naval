@@ -11,4 +11,4 @@ void imprimir_tabuleiro(tabuleiro);
 char verifica_casa(int i, int j, int player);
 int numero_coluna(char coluna);
 void posicionar_navios(tabuleiro, tabuleiro);
-int verifica_vitoria();
+int verificar_vitoria(tabuleiro, tabuleiro, tabuleiro, tabuleiro);
