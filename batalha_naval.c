@@ -114,28 +114,38 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 
 int numero_coluna(char coluna){
 	switch(coluna){
-		case 'A': return 0;
-			break;
-		case 'B': return 1;
-			break;
-		case 'C': return 2;
-			break;
-		case 'D': return 3;
-			break;
-		case 'E': return 4;
-			break;
-		case 'F': return 5;
-			break;
-		case 'G': return 6;
-			break;
-		case 'H': return 7;
-			break;
-		case 'I': return 8;
-			break;
-		case 'J': return 9;
-			break;
-		default: return 10;
-			break;
+		case 'A':
+		case 'a':
+			return 0;
+		case 'B':
+		case 'b':
+			return 1;
+		case 'C':
+		case 'c':
+			return 2;
+		case 'D':
+		case 'd':
+			return 3;
+		case 'E':
+		case 'e':
+			return 4;
+		case 'F':
+		case 'f':
+			return 5;
+		case 'G':
+		case 'g':
+			return 6;
+		case 'H':
+		case 'h':
+			return 7;
+		case 'I':
+		case 'i':
+			return 8;
+		case 'J':
+		case 'j':
+			return 9;
+		default:
+			return 10;
 	}
 }
 
