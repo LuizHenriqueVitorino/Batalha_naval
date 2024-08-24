@@ -6,9 +6,9 @@ typedef struct
     size_t len_y;
 } tabuleiro;
 
-void gerar_tabuleiro(tabuleiro *t);
-void imprimir_tabuleiro(tabuleiro *t);
+void gerar_tabuleiro(tabuleiro*);
+void imprimir_tabuleiro(tabuleiro);
 char verifica_casa(int i, int j, int player);
 int numero_coluna(char coluna);
-int posiciona_navio();
+void posicionar_navios(tabuleiro, tabuleiro);
 int verifica_vitoria();

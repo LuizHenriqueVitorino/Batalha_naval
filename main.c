@@ -12,9 +12,7 @@ int main(){
 	gerar_tabuleiro(&navios_jogador);
 	gerar_tabuleiro(&navios_bot);
 
-	tabuleiro(10, 'K', 10, 10);
-	posiciona_navio();
-	tabuleiro(10, 'K', 10, 10);
+	posicionar_navios(navios_jogador, navios_bot);
 	while(verifica_vitoria()==3){
 		do{
 			do{

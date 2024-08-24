@@ -28,89 +28,88 @@ void imprimir_tabuleiro(tabuleiro t){
 	printf("\n");
 }
 
-int posiciona_navio(){
-	int linha_navio, linha_navio_bot, coluna_navio_bot;
-	char coluna_navio;
-	for(i=0;i<10;i++){
-		for(j=0;j<10;j++){
-			navios_jogador[i][j]=0;
-			navios_bot[i][j]=0;
-		}
-	}
-	tabuleiro(10, 'K', 10, 10);
-	/*No seguinte for, a função irá adicionar os 3 navios de uma casa.*/
-	for(i=0;i<3;i++){
+void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
+	char linha_navio_jogador, linha_navio_bot, coluna_navio_jogador, coluna_navio_bot;
+	
+	puts("Insira três navios de uma casa.");
+	for(int i = 0; i < 3; i++){
 		do{
-			printf("Linha do navio %d de uma casa: ", i+1);
-			scanf("%d", &linha_navio);
-			printf("Coluna do navio %d de uma casa: ", i+1);
-			scanf("%s", &coluna_navio);
-			linha_navio-=1;
-			if(navios_jogador[linha_navio][numero_coluna(coluna_navio)]==1){
-				printf("Esta casa já está ocupada por outro navio, tente outra vez!\n");
+			printf("Digite a linha do navio %d de uma casa:\n", i + 1);
+			scanf("%d", &linha_navio_jogador);
+			printf("Digite a coluna do navio %d de uma casa:\n", i + 1);
+			scanf("%c", &coluna_navio_jogador);
+			if(t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] == 1){
+				puts("Esta casa já está ocupada por outro navio, tente outra casa!");
 			}
-		}while(navios_jogador[linha_navio][numero_coluna(coluna_navio)]==1);
-		navios_jogador[linha_navio][numero_coluna(coluna_navio)]=1;
+		}while(t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)]==1);
+
+		t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] = 1;
+
 		do{
-			linha_navio_bot=rand()%9;
-			coluna_navio_bot=rand()%9;
-		}while(navios_bot[linha_navio_bot][coluna_navio_bot]==1);
-		navios_bot[linha_navio_bot][coluna_navio_bot]=1;
+			linha_navio_bot = rand() % 10;
+			coluna_navio_bot = rand() % 10;
+		}while(t_bot.data[linha_navio_bot][coluna_navio_bot] == 1);
+
+		t_bot.data[linha_navio_bot][coluna_navio_bot] = 1;
 	}
-	/*No seguinte for, a função irá adionar os 2 navios de duas casas.*/
-	tabuleiro(10, 'K', 10, 10);
-	for(i=0;i<2;i++){
+	
+	imprimir_tabuleiro(t_jogador);
+	puts("Insira dois navios de duas casas.");
+	for(int i = 0; i < 2; i++){
 		do{
 			do{
-				printf("Linha do navio %d de duas casas: ", i+1);
-				scanf("%d", &linha_navio);
-				printf("Coluna do navio %d de duas casas: ", i+1);
-				scanf("%s", &coluna_navio);
-				linha_navio-=1;
-				if(numero_coluna(coluna_navio)<=0 || numero_coluna(coluna_navio)>=8){
-					printf("Escolha um valor entre A e I\n");
+				printf("Digite a linha do navio %d de duas casas:\n", i + 1);
+				scanf("%d", &linha_navio_jogador);
+				printf("Digite a coluna do navio %d de duas casas:\n", i + 1);
+				scanf("%c", &coluna_navio_jogador);
+				if(numero_coluna(coluna_navio_jogador) == 8){
+					puts("Escolha um valor entre A e I");
 				}
-			}while(numero_coluna(coluna_navio)<=0 && numero_coluna(coluna_navio)>=8);
-			if(navios_jogador[linha_navio][numero_coluna(coluna_navio)]==1 && navios_jogador[linha_navio][numero_coluna(coluna_navio)+1]==1){
-				printf("Este navio irá sobrepor outro navio, tente outra vez.\n");
+			}while(numero_coluna(coluna_navio_jogador) == 8);
+			if(t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] == 1 || t_jogador.data[linha_navio_jogador][numero_coluna(coluna_navio_jogador) + 1] == 1){
+				puts("Este navio irá sobrepor outro navio, tente outra vez.");
 			}
-		}while(navios_jogador[linha_navio][numero_coluna(coluna_navio)]==1 || navios_jogador[linha_navio][numero_coluna(coluna_navio)+1]==1);
-		navios_jogador[linha_navio][numero_coluna(coluna_navio)]==1;
-		navios_jogador[linha_navio][numero_coluna(coluna_navio)+1]==1;
+		}while(t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)]==1 || t_jogador.data[linha_navio_jogador][numero_coluna(coluna_navio_jogador) + 1] == 1);
+		t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] = 1;
+		t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador) + 1] = 1;
+
 		do{
-			linha_navio_bot=rand()%9;
-			coluna_navio_bot=rand()%8;
-		}while(navios_bot[linha_navio_bot][coluna_navio_bot]==1 || navios_bot[linha_navio_bot][coluna_navio_bot+1]==1);
-		navios_bot[linha_navio_bot][coluna_navio_bot]=1;
-		navios_bot[linha_navio_bot][coluna_navio_bot+1]=1;
+			linha_navio_bot = rand() % 10;
+			coluna_navio_bot = rand() % 9;
+		}while(t_bot.data[linha_navio_bot][coluna_navio_bot] == 1 || t_bot.data[linha_navio_bot][coluna_navio_bot+1] == 1);
+		t_bot.data[linha_navio_bot][coluna_navio_bot] = 1;
+		t_bot.data[linha_navio_bot][coluna_navio_bot+1] = 1;
 	}
-	tabuleiro(10, 'K', 10, 10);
+	
+	imprimir_tabuleiro(t_jogador);
+	puts("Insira um navio de três casas.");
 	do{
 		do{
-			printf("Linha do navio de três casas: ");
-			scanf("%d", &linha_navio);
-			printf("Coluna do navio de três casas: ");
-			scanf("%s", &coluna_navio);
-			linha_navio-=1;
-			if(numero_coluna(coluna_navio)<=0 || numero_coluna(coluna_navio)>=7){
-				printf("Escolha um valor entre A e H\n");
+			printf("Digite a linha do navio de três casas:\n");
+			scanf("%d", &linha_navio_jogador);
+			printf("Digite a linha do navio de duas casas:\n");
+			scanf("%c", &coluna_navio_jogador);
+			if(numero_coluna(coluna_navio_jogador) > 7){
+				puts("Escolha um valor entre A e H\n");
 			}
-		}while(numero_coluna(coluna_navio)<=0 || numero_coluna(coluna_navio)>=7);
-		if(navios_jogador[linha_navio][numero_coluna(coluna_navio)]==1 || navios_jogador[linha_navio][numero_coluna(coluna_navio)+1]==1 || navios_jogador[linha_navio][numero_coluna(coluna_navio)]+2==1){
-			printf("Este navio irá sobrepor outro navio, tente outra vez.\n");
+		}while(numero_coluna(coluna_navio_jogador) > 7);
+		if(t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] == 1 || t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador) + 1] == 1 || t_jogador.data[linha_navio_jogador][numero_coluna(coluna_navio_jogador) + 2] == 1){
+			puts("Este navio irá sobrepor outro navio, tente outra vez.");
 		}
-	}while(navios_jogador[linha_navio][numero_coluna(coluna_navio)]==1 || navios_jogador[linha_navio][numero_coluna(coluna_navio)+1]==1 || navios_jogador[linha_navio][numero_coluna(coluna_navio)]+2==1);
-	navios_jogador[linha_navio][numero_coluna(coluna_navio)]==1;
-	navios_jogador[linha_navio][numero_coluna(coluna_navio)+1]==1;
-	navios_jogador[linha_navio][numero_coluna(coluna_navio)+2]==1;
+	}while(t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] == 1 || t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador) + 1] == 1 || t_jogador.data[linha_navio_jogador][numero_coluna(coluna_navio_jogador) + 2] == 1);
+	t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] = 1;
+	t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador) + 1] = 1;
+	t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador) + 2] = 1;
+
 	do{
-		linha_navio_bot=rand()%9;
-		coluna_navio_bot=rand()%7;
-	}while(navios_bot[linha_navio_bot][coluna_navio_bot]==1 || navios_bot[linha_navio_bot][coluna_navio_bot+1]==1 || navios_bot[linha_navio_bot][coluna_navio_bot+2]==1);
-	navios_bot[linha_navio_bot][coluna_navio_bot]=1;
-	navios_bot[linha_navio_bot][coluna_navio_bot+1]=1;
-	navios_bot[linha_navio_bot][coluna_navio_bot+2]=1;
-	tabuleiro(10, 'K', 10, 10);
+		linha_navio_bot = rand() % 10;
+		coluna_navio_bot = rand() % 8;
+	}while(t_bot.data[linha_navio_bot][coluna_navio_bot] == 1 || t_bot.data[linha_navio_bot][coluna_navio_bot + 1] == 1 || t_bot.data[linha_navio_bot][coluna_navio_bot + 2] == 1);
+	t_bot.data[linha_navio_bot][coluna_navio_bot]=1;
+	t_bot.data[linha_navio_bot][coluna_navio_bot + 1]=1;
+	t_bot.data[linha_navio_bot][coluna_navio_bot + 2]=1;
+	
+	imprimir_tabuleiro(t_jogador);
 }
 
 int numero_coluna(char coluna){
