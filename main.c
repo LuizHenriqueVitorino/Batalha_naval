@@ -26,7 +26,7 @@ int main(){
 
 			do{
 				puts("Linha:");
-				scanf("%d", &linha_jogador);
+				scanf("%hhd", &linha_jogador);
 				if(linha_jogador < 1 || linha_jogador > 10){
 					puts("Valor inválido, digite apenas os valores no intervalo de 1 a 10");
 				}
@@ -45,7 +45,7 @@ int main(){
 		imprimir_tabuleiro(ataques_bot);
 	}
 
-	if(verifica_vitoria() == 1){
+	if(verificar_vitoria(ataques_jogador, navios_jogador, ataques_bot, navios_bot) == 1){
 		puts("Parabéns. Você ganhou!");
 	}
 	else{

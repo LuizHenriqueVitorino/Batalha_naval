@@ -35,7 +35,7 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 	for(int i = 0; i < 3; i++){
 		do{
 			printf("Digite a linha do navio %d de uma casa:\n", i + 1);
-			scanf("%d", &linha_navio_jogador);
+			scanf("%hhd", &linha_navio_jogador);
 			printf("Digite a coluna do navio %d de uma casa:\n", i + 1);
 			scanf("%c", &coluna_navio_jogador);
 			if(t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] == 1){
@@ -59,7 +59,7 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 		do{
 			do{
 				printf("Digite a linha do navio %d de duas casas:\n", i + 1);
-				scanf("%d", &linha_navio_jogador);
+				scanf("%hhd", &linha_navio_jogador);
 				printf("Digite a coluna do navio %d de duas casas:\n", i + 1);
 				scanf("%c", &coluna_navio_jogador);
 				if(numero_coluna(coluna_navio_jogador) == 8){
@@ -86,7 +86,7 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 	do{
 		do{
 			printf("Digite a linha do navio de três casas:\n");
-			scanf("%d", &linha_navio_jogador);
+			scanf("%hhd", &linha_navio_jogador);
 			printf("Digite a linha do navio de duas casas:\n");
 			scanf("%c", &coluna_navio_jogador);
 			if(numero_coluna(coluna_navio_jogador) > 7){
