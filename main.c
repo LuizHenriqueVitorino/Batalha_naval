@@ -23,13 +23,14 @@ int main(){
 					puts("Valor inválido, digite apenas os valores no intervalo de A a J");
 				}
 			}while(numero_coluna(coluna_jogador) == 10);
-
+			while (getchar() != '\n');
 			do{
 				puts("Linha:");
 				scanf("%hhd", &linha_jogador);
 				if(linha_jogador < 1 || linha_jogador > 10){
 					puts("Valor inválido, digite apenas os valores no intervalo de 1 a 10");
 				}
+				while (getchar() != '\n');
 			}while(linha_jogador < 0 || linha_jogador > 9);
 			if(ataques_jogador.data[linha_jogador - 1][numero_coluna(coluna_jogador)] != 0){
 				puts("Casa já revelada, tente outra vez!");
