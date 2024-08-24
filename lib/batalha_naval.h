@@ -8,7 +8,7 @@ typedef struct
 
 void gerar_tabuleiro(tabuleiro*);
 void imprimir_tabuleiro(tabuleiro);
-char verifica_casa(int i, int j, int player);
+char verifica_casa(int i, int j, tabuleiro, tabuleiro);
 int numero_coluna(char coluna);
 void posicionar_navios(tabuleiro, tabuleiro);
 int verificar_vitoria(tabuleiro, tabuleiro, tabuleiro, tabuleiro);

@@ -139,23 +139,11 @@ int numero_coluna(char coluna){
 	}
 }
 
-char verifica_casa(int i, int j, int player){
-	if(player==1){
-		if(navios_bot[i][j]==1){
-			return 'x';
-		}
-		else{
-			return 'a';
-		}
+char verificar_casa(int i, int j, tabuleiro t_atacando, tabuleiro t_navios){
+	if(t_navios.data[i][j] == 1){
+		return 'x';
 	}
-	if(player==2){
-		if(navios_jogador[i][j]==1){
-			return 'x';
-		}
-		else{
-			return 'a';
-		}
-	}
+	return 'a';
 }
 
 int verificar_vitoria(tabuleiro t_ataque_jogador, tabuleiro t_navios_jogador, tabuleiro t_ataque_bot, tabuleiro t_navios_bot){
