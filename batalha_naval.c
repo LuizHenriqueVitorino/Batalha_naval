@@ -157,8 +157,6 @@ int numero_coluna(char coluna){
 		case 'J':
 		case 'j':
 			return 9;
-		default:
-			return 10;
 	}
 }
 
