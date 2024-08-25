@@ -172,7 +172,7 @@ int numero_coluna(char coluna){
 	}
 }
 
-char verificar_casa(int i, int j, tabuleiro t_atacando, tabuleiro t_navios){
+char verificar_casa(int i, int j, tabuleiro t_navios){
 	if(t_navios.data[i][j] == 1){
 		return 'x';
 	}
