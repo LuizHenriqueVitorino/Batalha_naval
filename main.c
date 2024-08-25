@@ -24,7 +24,7 @@ int main(){
 					puts("Valor inválido, digite apenas os valores no intervalo de 1 a 10");
 				}
 				while (getchar() != '\n');
-			}while(linha_jogador < 0 || linha_jogador > 9);
+			}while(linha_jogador < 1 || linha_jogador > 10);
 			do{
 				puts("Coluna:");
 				scanf("%c", &coluna_jogador);
@@ -42,7 +42,7 @@ int main(){
 			coluna_bot = rand()%10;
 			linha_bot = rand()%10;
 		}while(ataques_bot.data[linha_bot][coluna_bot] != 0);
-		ataques_bot.data[linha_bot - 1][numero_coluna(coluna_bot)] = verificar_casa(linha_bot, coluna_bot, navios_jogador);
+		ataques_bot.data[linha_bot][coluna_bot] = verificar_casa(linha_bot, coluna_bot, navios_jogador);
 		puts("Seu tabuleiro:");
 		imprimir_tabuleiro_ataques(ataques_jogador);
 		puts("Tabuleiro do seu oponente:");
