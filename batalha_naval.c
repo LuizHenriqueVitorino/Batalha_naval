@@ -183,18 +183,18 @@ int verificar_vitoria(tabuleiro t_ataque_jogador, tabuleiro t_navios_jogador, ta
 	int pontuacao_jogador = 0, pontuacao_bot = 0;
 	for(int i = 0; i < t_ataque_jogador.len_x; i++){
 		for(int j = 0; j < t_ataque_jogador.len_y; j++){
-			if(t_ataque_jogador.data[i][j] == 'a'){
-				pontuacao_jogador+=1;
+			if(t_ataque_jogador.data[i][j] == 'x'){
+				pontuacao_jogador += 1;
 			}
-			if(t_ataque_jogador.data[i][j] == 'a'){
-				pontuacao_bot+=1;
+			if(t_ataque_jogador.data[i][j] == 'x'){
+				pontuacao_bot += 1;
 			}
 		}
 	}
 	if(pontuacao_jogador == 10){
 		return 1;
 	}
-	if(pontuacao_bot==10){
+	else if(pontuacao_bot == 10){
 		return 2;
 	}
 	else{
