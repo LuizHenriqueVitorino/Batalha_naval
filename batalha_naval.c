@@ -18,7 +18,7 @@ void gerar_tabuleiro(tabuleiro *t){
 	}
 }
 
-void imprimir_tabuleiro(tabuleiro t){
+void imprimir_tabuleiro_navios(tabuleiro t){
 	puts("\tA B C D E F G H I J");
 	for(int i = 0; i < t.len_x; i++){
 		printf("%d\t", i + 1);
@@ -29,6 +29,18 @@ void imprimir_tabuleiro(tabuleiro t){
 			else{
 				printf("+ ");
 			}
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
+
+void imprimir_tabuleiro_ataques(tabuleiro t){
+	puts("\tA B C D E F G H I J");
+	for(int i = 0; i < t.len_x; i++){
+		printf("%d\t", i + 1);
+		for(int j = 0; j < t.len_y; j++){
+			printf("%c ", t.data[i][j] == 0 ? '-' : t.data[i][j]);
 		}
 		printf("\n");
 	}
@@ -62,7 +74,7 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 		t_bot.data[linha_navio_bot][coluna_navio_bot] = 1;
 	}
 	
-	imprimir_tabuleiro(t_jogador);
+	imprimir_tabuleiro_navios(t_jogador);
 	puts("Insira dois navios de duas casas.");
 	for(int i = 0; i < 2; i++){
 		do{
@@ -73,10 +85,10 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 				printf("Digite a coluna do navio %d de duas casas:\n", i + 1);
 				scanf("%c", &coluna_navio_jogador);
 				while (getchar() != '\n');
-				if(numero_coluna(coluna_navio_jogador) == 8){
+				if(numero_coluna(coluna_navio_jogador) == 9){
 					puts("Escolha um valor entre A e I");
 				}
-			}while(numero_coluna(coluna_navio_jogador) == 8);
+			}while(numero_coluna(coluna_navio_jogador) == 9);
 			if(t_jogador.data[linha_navio_jogador - 1][numero_coluna(coluna_navio_jogador)] == 1 || t_jogador.data[linha_navio_jogador][numero_coluna(coluna_navio_jogador) + 1] == 1){
 				puts("Este navio irá sobrepor outro navio, tente outra vez.");
 			}
@@ -92,7 +104,7 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 		t_bot.data[linha_navio_bot][coluna_navio_bot+1] = 1;
 	}
 	
-	imprimir_tabuleiro(t_jogador);
+	imprimir_tabuleiro_navios(t_jogador);
 	puts("Insira um navio de três casas.");
 	do{
 		do{
@@ -122,7 +134,7 @@ void posicionar_navios(tabuleiro t_jogador, tabuleiro t_bot){
 	t_bot.data[linha_navio_bot][coluna_navio_bot + 1]=1;
 	t_bot.data[linha_navio_bot][coluna_navio_bot + 2]=1;
 	
-	imprimir_tabuleiro(t_jogador);
+	imprimir_tabuleiro_navios(t_jogador);
 }
 
 int numero_coluna(char coluna){

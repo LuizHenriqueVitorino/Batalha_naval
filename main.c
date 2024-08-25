@@ -41,9 +41,9 @@ int main(){
 			linha_bot = rand()%10;
 		}while(ataques_bot.data[linha_bot][coluna_bot] != 0);
 		puts("Seu tabuleiro:");
-		imprimir_tabuleiro(ataques_jogador);
+		imprimir_tabuleiro_ataques(ataques_jogador);
 		puts("Tabuleiro do seu oponente:");
-		imprimir_tabuleiro(ataques_bot);
+		imprimir_tabuleiro_ataques(ataques_bot);
 	}
 
 	if(verificar_vitoria(ataques_jogador, navios_jogador, ataques_bot, navios_bot) == 1){
