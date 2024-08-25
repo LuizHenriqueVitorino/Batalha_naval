@@ -43,10 +43,10 @@ int main(){
 			linha_bot = rand()%10;
 		}while(ataques_bot.data[linha_bot][coluna_bot] != 0);
 		ataques_bot.data[linha_bot][coluna_bot] = verificar_casa(linha_bot, coluna_bot, navios_jogador);
-		puts("Seu tabuleiro:");
-		imprimir_tabuleiro_ataques(ataques_jogador);
 		puts("Tabuleiro do seu oponente:");
 		imprimir_tabuleiro_ataques(ataques_bot);
+		puts("Seu tabuleiro:");
+		imprimir_tabuleiro_ataques(ataques_jogador);
 	}
 
 	if(verificar_vitoria(ataques_jogador, navios_jogador, ataques_bot, navios_bot) == 1){
