@@ -191,13 +191,11 @@ int verificar_vitoria(tabuleiro t_ataque_jogador, tabuleiro t_navios_jogador, ta
 			}
 		}
 	}
-	if(pontuacao_jogador == 12){
+	if(pontuacao_jogador == 10){
 		return 1;
 	}
-	else if(pontuacao_bot == 12){
+	if(pontuacao_bot == 10){
 		return 2;
 	}
-	else{
-		return 3;
-	}
+	return 3;
 }
